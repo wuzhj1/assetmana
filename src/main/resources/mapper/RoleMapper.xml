@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ecut.assetmana.mapper.RoleMapper">
+    <select id="queryRolesIdByUser" resultType="Long" >
+        select r.id as id from sys_role r
+        inner  join sys_user_role ur on r.id=ur.rid
+        inner join sys_user u on u.id=ur.uid
+        where u.id=#{uid}
+    </select>
+
+
+
+</mapper>
