@@ -1,6 +1,7 @@
 package cn.ecut.assetmana.service;
 
 import cn.ecut.assetmana.bean.Menu;
+import cn.ecut.assetmana.bean.TreeMenu;
 import cn.ecut.assetmana.mapper.MenuMapper;
 import cn.ecut.assetmana.mapper.RoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,9 @@ public class MenuService {
 
     public List<Menu> getMenuByRole(Long rid) {
         return menuMapper.queryMenusByRole(rid);
+    }
+
+    public List<TreeMenu> getAllTreeMenus(){
+        return  menuMapper.queryAllTreeMenus();
     }
 }

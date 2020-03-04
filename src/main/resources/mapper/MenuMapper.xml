@@ -28,6 +28,27 @@
         </collection>
     </resultMap>
 
+    <resultMap id="TreeMenuMap" type="cn.ecut.assetmana.bean.TreeMenu">
+        <result property="id" column="id"/>
+        <result property="label" column="name"/>
+        <collection property="children" ofType="cn.ecut.assetmana.bean.TreeMenu"
+                    select="cn.ecut.assetmana.mapper.MenuMapper.queryTreeMenusByParent" column="id">
+        </collection>
+    </resultMap>
+
+    <select id="queryTreeMenusByParent" resultMap="TreeMenuMap">
+        select id,
+            name
+        from sys_menu
+        where parentId=#{parentId}
+    </select>
+    <select id="queryAllTreeMenus" resultMap="TreeMenuMap">
+        select id,
+            name
+        from sys_menu
+        where isRoot=1
+    </select>
+
     <select id="queryMenusByRole" resultMap="BaseResultMap">
         select m.id as mid,
             m.path as path,

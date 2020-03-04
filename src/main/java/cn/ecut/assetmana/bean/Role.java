@@ -8,7 +8,7 @@ public class Role implements Serializable,Cloneable{
     /** 角色名称 */
     private String name ;
     /** 中文角色名 */
-    private String namezh ;
+    private String nameZh ;
     /** 角色备注 */
     private String remark ;
 
@@ -28,14 +28,15 @@ public class Role implements Serializable,Cloneable{
     public void setName(String name){
         this.name = name;
     }
-    /** 中文角色名 */
-    public String getNameZh(){
-        return this.namezh;
+
+    public String getNameZh() {
+        return nameZh;
     }
-    /** 中文角色名 */
-    public void setNameZh(String namezh){
-        this.namezh = namezh;
+
+    public void setNameZh(String nameZh) {
+        this.nameZh = nameZh;
     }
+
     /** 角色备注 */
     public String getRemark(){
         return this.remark;

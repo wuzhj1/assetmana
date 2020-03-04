@@ -2,6 +2,8 @@ package cn.ecut.assetmana.controller;
 
 
 import cn.ecut.assetmana.bean.Menu;
+import cn.ecut.assetmana.bean.ResponData;
+import cn.ecut.assetmana.bean.TreeMenu;
 import cn.ecut.assetmana.mapper.MenuMapper;
 import cn.ecut.assetmana.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +34,16 @@ public class MenuController {
         Map<String,Object> map=new HashMap<>();
         map.put("data",menus);
         return map;
+    }
+
+    @GetMapping("treemenus")
+    public ResponData getTreeMenus(){
+        List<TreeMenu> treeMenus=menuService.getAllTreeMenus();
+        ResponData responData=new ResponData();
+        responData.setMsg("成功");
+        Map<String,Object> data=new HashMap<>();
+        data.put("data",treeMenus);
+        responData.setData(data);
+        return  responData;
     }
 }

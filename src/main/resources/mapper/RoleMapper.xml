@@ -10,6 +10,55 @@
         where u.id=#{uid}
     </select>
 
+    <select id="queryAllRoles" resultType="cn.ecut.assetmana.bean.Role">
+        select * from sys_role
+    </select>
 
+    <select id="queryRoleByName" resultType="cn.ecut.assetmana.bean.Role">
+        select * from sys_role
+        where name=#{name}
+    </select>
 
+    <insert id="insertRole" parameterType="cn.ecut.assetmana.bean.Role">
+        insert into sys_role(name, nameZh, remark)
+        value (#{name},#{nameZh},#{remark})
+    </insert>
+
+    <delete id="deleteRoleByIds" >
+        delete from sys_role
+        where id in
+        <foreach item="id" collection="ids" separator="," open="(" close=")" index="">
+            #{id}
+        </foreach>
+    </delete>
+    <delete id="deleteRoleUserByIds" parameterType="java.util.List">
+        delete from sys_user_role
+        where rid in
+            <foreach item="id" collection="ids" separator="," open="(" close=")" index="">
+                #{id}
+            </foreach>
+
+    </delete>
+
+    <delete id="deleteRoleMenuByIds" >
+        delete from sys_menu_role
+        where rid in
+        <foreach item="id" collection="ids" separator="," open="(" close=")" index="">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateRole" parameterType="cn.ecut.assetmana.bean.Role">
+        update sys_role
+        <set>
+            <if test="name!=null and name!=''">name=#{name},</if>
+            <if test="nameZh!=null and nameZh!=''">nameZh=#{nameZh},</if>
+            <if test="remark!=null and remark!=''">remark=#{remark},</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <insert id="insertRoleMenus">
+        insert into sys_menu_role (mid, rid) values ();
+    </insert>
 </mapper>
